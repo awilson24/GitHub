@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <body onload="start()">
+
+        <canvas id="myCanvas" width="800" height="500" style="border:1px solid #000000;"></canvas>
+        
+        <script>
+            var tag;
+            var pen;
+            var x = 20;
+            var leftMove = true;
+            var rad = 10;
+            var size = true;
+            
+            function start() {
+                //connects to the canvas    
+                tag = document.getElementById("myCanvas");
+                pen = tag.getContext("2d");
+
+                //Set timer
+                setInterval("drawbox()", 20);
+                setInterval("drawcircle()", 30);
+            }
+            
+            function drawbox() {
+                //wipe background
+                pen.fillStyle = "#ffffff";
+                pen.fillRect(0,0,800,250);
+
+                //Draw a box
+                pen.fillStyle = "#ff0000";
+                pen.fillRect(x,20,100,100);
+                
+                //check leftMove is true, then adding 2 to the value x                
+                if (leftMove == true){
+                    x = x + 2;
+                    //change leftMove to false if the box reaches 600
+                    if (x >= 600){
+                        leftMove = false;
+                    }
+                
+                }
+            //move x value -2 till it reaches 100, then change value of leftMove to true
+            else {
+                x = x - 2;
+                
+                if (x <= 100){
+                    leftMove = true;
+                }
+            }
+            }
+            
+            function drawcircle(){
+            //draws circle
+            pen.beginPath();
+            pen.arc(200,400,rad,0,2*Math.PI);
+            pen.stroke();
+                
+               
+            
+             if (size == true){
+                    rad = rad + 10;
+                    //change size to false if the box reaches 80
+                    if (rad >= 80){
+                        size = false;
+                    }
+                
+                }
+            //move rad value -10 till it reaches 5, then change value of size to true
+            else {
+                rad = rad - 10;
+                
+                if (rad <= 5){
+                    size = true;
+                }
+            }    
+                
+            }
+            
+        </script>
+    </body>
+</html>
